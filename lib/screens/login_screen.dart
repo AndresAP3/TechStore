@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../config/theme.dart';
 
-const String kDemoEmail    = 'user@demo.com';
-const String kDemoPassword = '123456';
+const String kDemoEmail    = 'example@example.com';
+const String kDemoPassword = '000000';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
