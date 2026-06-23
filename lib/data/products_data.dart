@@ -6,7 +6,7 @@ const List<Product> kProducts = [
     name: 'iPhone 15 Pro',
     description: 'El smartphone más avanzado de Apple con chip A17 Pro, cámara de 48MP y pantalla Super Retina XDR de 6.1 pulgadas.',
     price: 4299900,
-    imageUrl: 'https://es.digitaltrends.com/tachyon/sites/13/2023/09/iphohe-15-pro-iphone-15-pro-max-feat-01.jpeg?resize=1200%2C720',
+    imageUrl: 'https://images.unsplash.com/photo-1710023038502-ba80a70a9f53?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     category: 'Smartphones',
     rating: 4.9,
     reviewCount: 320,
