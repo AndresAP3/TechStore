@@ -26,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }).toList();
   }
 
-  // Icono por categoría
   IconData _categoryIcon(String cat) {
     switch (cat) {
       case 'Smartphones': return Icons.smartphone;
@@ -47,23 +46,19 @@ class _HomeScreenState extends State<HomeScreen> {
     final featured = kProducts.where((p) => p.isFeatured).toList();
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0A0A0A),
+      backgroundColor: const Color(0xFF0F0F0F),
       extendBody: true,
-
-      // AppBar
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF0F0F0F),
         elevation: 0,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Good day!',
-                style: TextStyle(fontSize: 12, color: Colors.white.withOpacity(0.4))),
             const Text('TechStore',
-                style: TextStyle(
-                  fontSize: 20, fontWeight: FontWeight.bold,
-                  color: AppTheme.accentColor, letterSpacing: 1,
-                )),
+                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+            Text('Welcome back!',
+                style: TextStyle(color: Colors.white.withOpacity(0.35), fontSize: 12)),
           ],
         ),
         actions: [
@@ -73,9 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 margin: const EdgeInsets.only(right: 16, top: 8),
                 width: 40, height: 40,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.08),
+                  color: const Color(0xFF1E1E1E),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.white.withOpacity(0.1)),
                 ),
                 child: IconButton(
                   padding: EdgeInsets.zero,
@@ -88,14 +82,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   right: 12, top: 6,
                   child: Container(
                     width: 16, height: 16,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppTheme.accentColor,
                       shape: BoxShape.circle,
-                      boxShadow: [BoxShadow(color: AppTheme.accentColor.withOpacity(0.6), blurRadius: 6)],
                     ),
                     child: Center(
                       child: Text('$cartCount',
-                          style: const TextStyle(color: Colors.black, fontSize: 9, fontWeight: FontWeight.bold)),
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 9, fontWeight: FontWeight.bold)),
                     ),
                   ),
                 ),
@@ -116,16 +110,15 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.06),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: Colors.white.withOpacity(0.08)),
+                  color: const Color(0xFF1E1E1E),
+                  borderRadius: BorderRadius.circular(14),
                 ),
                 child: TextField(
                   style: const TextStyle(color: Colors.white, fontSize: 14),
                   decoration: InputDecoration(
                     hintText: 'Search products...',
                     hintStyle: TextStyle(color: Colors.white.withOpacity(0.25), fontSize: 14),
-                    prefixIcon: Icon(Icons.search, color: AppTheme.accentColor.withOpacity(0.7), size: 20),
+                    prefixIcon: const Icon(Icons.search, color: AppTheme.accentColor, size: 20),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(vertical: 14),
                   ),
@@ -135,15 +128,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 24),
 
-            // Featured hero carousel
+            // Featured
             if (_searchQuery.isEmpty && _selectedCategory == 'All') ...[
-              Padding(
-                padding: const EdgeInsets.only(left: 16, bottom: 12),
+              const Padding(
+                padding: EdgeInsets.only(left: 16, bottom: 12),
                 child: Text('Featured',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.9),
-                      fontSize: 18, fontWeight: FontWeight.bold,
-                    )),
+                    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
               ),
               SizedBox(
                 height: 200,
@@ -160,14 +150,11 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 28),
             ],
 
-            // Categorías con iconos
-            Padding(
-              padding: const EdgeInsets.only(left: 16, bottom: 12),
+            // Categorías
+            const Padding(
+              padding: EdgeInsets.only(left: 16, bottom: 12),
               child: Text('Categories',
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.9),
-                    fontSize: 18, fontWeight: FontWeight.bold,
-                  )),
+                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
             ),
             SizedBox(
               height: 80,
@@ -189,21 +176,18 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 24),
 
-            // Grid productos
+            // Products header
             Padding(
               padding: const EdgeInsets.only(left: 16, bottom: 12),
               child: Row(
                 children: [
-                  Text('Products',
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.9),
-                        fontSize: 18, fontWeight: FontWeight.bold,
-                      )),
+                  const Text('Products',
+                      style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                   const SizedBox(width: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: AppTheme.accentColor.withOpacity(0.15),
+                      color: const Color(0xFF1E1E1E),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text('${_filteredProducts.length}',
@@ -243,24 +227,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
 
-            const SizedBox(height: 100), // espacio para bottom nav
+            const SizedBox(height: 100),
           ],
         ),
       ),
 
-      // Bottom Navigation Bar con efecto glass
       bottomNavigationBar: Container(
         margin: const EdgeInsets.fromLTRB(16, 0, 16, 20),
         decoration: BoxDecoration(
           color: const Color(0xFF1A1A1A),
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: Colors.white.withOpacity(0.08)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.5),
-              blurRadius: 20, offset: const Offset(0, 8),
-            ),
-          ],
+          border: Border.all(color: Colors.white.withOpacity(0.06)),
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(24),
@@ -278,23 +255,28 @@ class _HomeScreenState extends State<HomeScreen> {
             showUnselectedLabels: false,
             type: BottomNavigationBarType.fixed,
             items: [
-              const BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-              const BottomNavigationBarItem(icon: Icon(Icons.favorite_outline), activeIcon: Icon(Icons.favorite), label: 'Saved'),
+              const BottomNavigationBarItem(
+                  icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
+              const BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite_outline), activeIcon: Icon(Icons.favorite), label: 'Saved'),
               BottomNavigationBarItem(
                 icon: Stack(children: [
                   const Icon(Icons.shopping_bag_outlined),
-                  if (cartCount > 0) Positioned(
-                    right: 0, top: 0,
-                    child: Container(
-                      width: 8, height: 8,
-                      decoration: const BoxDecoration(color: AppTheme.accentColor, shape: BoxShape.circle),
+                  if (cartCount > 0)
+                    Positioned(
+                      right: 0, top: 0,
+                      child: Container(
+                        width: 8, height: 8,
+                        decoration: const BoxDecoration(
+                            color: AppTheme.accentColor, shape: BoxShape.circle),
+                      ),
                     ),
-                  ),
                 ]),
                 activeIcon: const Icon(Icons.shopping_bag),
                 label: 'Cart',
               ),
-              const BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'Profile'),
+              const BottomNavigationBarItem(
+                  icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'Profile'),
             ],
           ),
         ),
@@ -303,7 +285,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// Featured card horizontal con efecto glass
 class _FeaturedCard extends StatelessWidget {
   final Product product;
   final VoidCallback onTap;
@@ -314,14 +295,11 @@ class _FeaturedCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 280,
+        width: 260,
         margin: const EdgeInsets.only(right: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(color: AppTheme.accentColor.withOpacity(0.1),
-                blurRadius: 20, spreadRadius: 1),
-          ],
+          color: const Color(0xFF1A1A1A),
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -330,29 +308,18 @@ class _FeaturedCard extends StatelessWidget {
             children: [
               Hero(
                 tag: 'product-${product.id}',
-                child: Image.network(product.imageUrl, fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(color: const Color(0xFF1E1E1E))),
-              ),
-              // Gradiente oscuro abajo
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      Colors.black.withOpacity(0.85),
-                    ],
-                  ),
+                child: Image.network(
+                  product.imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Container(color: const Color(0xFF1E1E1E)),
                 ),
               ),
-              // Info abajo con efecto glass
               Positioned(
                 bottom: 0, left: 0, right: 0,
                 child: Container(
-                  padding: const EdgeInsets.all(14),
+                  padding: const EdgeInsets.all(12),
+                  color: Colors.black.withOpacity(0.6),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
                         child: Column(
@@ -363,28 +330,33 @@ class _FeaturedCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                               decoration: BoxDecoration(
                                 color: AppTheme.accentColor,
-                                borderRadius: BorderRadius.circular(6),
+                                borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(product.category,
-                                  style: const TextStyle(color: Colors.black, fontSize: 9, fontWeight: FontWeight.bold)),
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 9, fontWeight: FontWeight.bold)),
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 3),
                             Text(product.name,
-                                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15)),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
                             Text(
                               '\$${product.price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (m) => '${m[1]}.')}',
-                              style: const TextStyle(color: AppTheme.accentColor, fontWeight: FontWeight.bold, fontSize: 13),
+                              style: const TextStyle(
+                                  color: AppTheme.accentColor, fontWeight: FontWeight.bold, fontSize: 12),
                             ),
                           ],
                         ),
                       ),
                       Container(
-                        width: 32, height: 32,
+                        width: 30, height: 30,
                         decoration: BoxDecoration(
                           color: AppTheme.accentColor,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        child: const Icon(Icons.arrow_forward_ios, color: Colors.black, size: 14),
+                        child: const Icon(Icons.arrow_forward_ios, color: Colors.black, size: 12),
                       ),
                     ],
                   ),
@@ -398,7 +370,6 @@ class _FeaturedCard extends StatelessWidget {
   }
 }
 
-// Categoría pill con icono
 class _CategoryPill extends StatelessWidget {
   final String label;
   final IconData icon;
@@ -410,34 +381,27 @@ class _CategoryPill extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
+      child: Container(
         margin: const EdgeInsets.only(right: 12),
-        width: 64,
+        width: 60,
         child: Column(
           children: [
             AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              width: 52, height: 52,
+              duration: const Duration(milliseconds: 200),
+              width: 50, height: 50,
               decoration: BoxDecoration(
-                color: isSelected ? AppTheme.accentColor : Colors.white.withOpacity(0.06),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: isSelected ? AppTheme.accentColor : Colors.white.withOpacity(0.08),
-                ),
-                boxShadow: isSelected
-                    ? [BoxShadow(color: AppTheme.accentColor.withOpacity(0.4), blurRadius: 12, spreadRadius: 1)]
-                    : [],
+                color: isSelected ? AppTheme.accentColor : const Color(0xFF1E1E1E),
+                borderRadius: BorderRadius.circular(14),
               ),
               child: Icon(icon,
                   color: isSelected ? Colors.black : Colors.white.withOpacity(0.5),
                   size: 22),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 5),
             Text(
-              label == 'All' ? 'All' : label.length > 6 ? '${label.substring(0, 5)}..' : label,
+              label.length > 6 ? '${label.substring(0, 5)}..' : label,
               style: TextStyle(
-                color: isSelected ? AppTheme.accentColor : Colors.white.withOpacity(0.4),
+                color: isSelected ? AppTheme.accentColor : Colors.white.withOpacity(0.35),
                 fontSize: 10,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
@@ -450,7 +414,6 @@ class _CategoryPill extends StatelessWidget {
   }
 }
 
-// Card animada con efecto glass
 class _AnimatedProductCard extends StatefulWidget {
   final Product product;
   final int index;
@@ -466,14 +429,13 @@ class _AnimatedProductCardState extends State<_AnimatedProductCard>
   late AnimationController _ctrl;
   late Animation<double> _fade;
   late Animation<Offset> _slide;
-  bool _pressed = false;
 
   @override
   void initState() {
     super.initState();
-    _ctrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    _ctrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 400));
     _fade = CurvedAnimation(parent: _ctrl, curve: Curves.easeOut);
-    _slide = Tween<Offset>(begin: const Offset(0, 0.15), end: Offset.zero)
+    _slide = Tween<Offset>(begin: const Offset(0, 0.12), end: Offset.zero)
         .animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
     Future.delayed(Duration(milliseconds: 50 * widget.index), () {
       if (mounted) _ctrl.forward();
@@ -490,28 +452,18 @@ class _AnimatedProductCardState extends State<_AnimatedProductCard>
       child: SlideTransition(
         position: _slide,
         child: GestureDetector(
-          onTapDown: (_) => setState(() => _pressed = true),
-          onTapUp: (_) { setState(() => _pressed = false); widget.onTap(); },
-          onTapCancel: () => setState(() => _pressed = false),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 150),
+          onTap: widget.onTap,
+          child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color(0xFF141414),
-              border: Border.all(
-                color: _pressed ? AppTheme.accentColor : Colors.white.withOpacity(0.07),
-                width: _pressed ? 1.5 : 1,
-              ),
-              boxShadow: _pressed
-                  ? [BoxShadow(color: AppTheme.accentColor.withOpacity(0.2), blurRadius: 20, spreadRadius: 2)]
-                  : [BoxShadow(color: Colors.black.withOpacity(0.4), blurRadius: 10, offset: const Offset(0, 4))],
+              borderRadius: BorderRadius.circular(16),
+              color: const Color(0xFF1A1A1A),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Imagen
+                  // Imagen con badge
                   Expanded(
                     child: Stack(
                       children: [
@@ -519,10 +471,13 @@ class _AnimatedProductCardState extends State<_AnimatedProductCard>
                           tag: 'product-${widget.product.id}',
                           child: Image.network(
                             widget.product.imageUrl,
-                            width: double.infinity, fit: BoxFit.cover,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
                             errorBuilder: (_, __, ___) => Container(
-                              color: const Color(0xFF1E1E1E),
-                              child: const Center(child: Icon(Icons.image_not_supported, color: Colors.white12, size: 36)),
+                              color: const Color(0xFF242424),
+                              child: const Center(
+                                  child: Icon(Icons.image_not_supported,
+                                      color: Colors.white12, size: 36)),
                             ),
                           ),
                         ),
@@ -530,57 +485,23 @@ class _AnimatedProductCardState extends State<_AnimatedProductCard>
                         Positioned(
                           top: 8, left: 8,
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.55),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: AppTheme.accentColor.withOpacity(0.4)),
+                              color: Colors.black.withOpacity(0.7),
+                              borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text(widget.product.category,
-                                style: const TextStyle(color: AppTheme.accentColor, fontSize: 8, fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                        // Botón + agregar
-                        Positioned(
-                          bottom: 8, right: 8,
-                          child: Consumer<CartProvider>(
-                            builder: (context, cart, _) => GestureDetector(
-                              onTap: () {
-                                cart.addProduct(widget.product);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('${widget.product.name} added to cart'),
-                                    backgroundColor: const Color(0xFF1E1E1E),
-                                    behavior: SnackBarBehavior.floating,
-                                    duration: const Duration(seconds: 1),
-                                  ),
-                                );
-                              },
-                              child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 200),
-                                width: 30, height: 30,
-                                decoration: BoxDecoration(
-                                  color: cart.contains(widget.product.id)
-                                      ? AppTheme.accentColor
-                                      : Colors.black.withOpacity(0.6),
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(color: AppTheme.accentColor.withOpacity(0.6)),
-                                  boxShadow: [BoxShadow(color: AppTheme.accentColor.withOpacity(0.3), blurRadius: 8)],
-                                ),
-                                child: Icon(
-                                  cart.contains(widget.product.id) ? Icons.check : Icons.add,
-                                  color: cart.contains(widget.product.id) ? Colors.black : AppTheme.accentColor,
-                                  size: 16,
-                                ),
-                              ),
-                            ),
+                                style: const TextStyle(
+                                    color: AppTheme.accentColor,
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.bold)),
                           ),
                         ),
                       ],
                     ),
                   ),
 
-                  // Info
+                  // Info + botón +
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
                     child: Column(
@@ -589,21 +510,61 @@ class _AnimatedProductCardState extends State<_AnimatedProductCard>
                         Text(widget.product.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.white)),
-                        const SizedBox(height: 4),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 13, color: Colors.white)),
+                        const SizedBox(height: 6),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              '\$${widget.product.price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (m) => '${m[1]}.')}',
-                              style: const TextStyle(color: AppTheme.accentColor, fontWeight: FontWeight.bold, fontSize: 13),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '\$${widget.product.price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (m) => '${m[1]}.')}',
+                                  style: const TextStyle(
+                                      color: AppTheme.accentColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13),
+                                ),
+                                Row(children: [
+                                  const Icon(Icons.star_rounded, color: Colors.amber, size: 12),
+                                  const SizedBox(width: 2),
+                                  Text('${widget.product.rating}',
+                                      style: TextStyle(
+                                          fontSize: 11, color: Colors.white.withOpacity(0.4))),
+                                ]),
+                              ],
                             ),
-                            Row(children: [
-                              const Icon(Icons.star_rounded, color: Colors.amber, size: 12),
-                              const SizedBox(width: 2),
-                              Text('${widget.product.rating}',
-                                  style: TextStyle(fontSize: 11, color: Colors.white.withOpacity(0.4))),
-                            ]),
+                            Consumer<CartProvider>(
+                              builder: (context, cart, _) => GestureDetector(
+                                onTap: () {
+                                  cart.addProduct(widget.product);
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text('${widget.product.name} added to cart'),
+                                    backgroundColor: const Color(0xFF1E1E1E),
+                                    behavior: SnackBarBehavior.floating,
+                                    duration: const Duration(seconds: 1),
+                                  ));
+                                },
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  width: 30, height: 30,
+                                  decoration: BoxDecoration(
+                                    color: cart.contains(widget.product.id)
+                                        ? AppTheme.accentColor
+                                        : const Color(0xFF2A2A2A),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Icon(
+                                    cart.contains(widget.product.id) ? Icons.check : Icons.add,
+                                    color: cart.contains(widget.product.id)
+                                        ? Colors.black
+                                        : Colors.white,
+                                    size: 16,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ],
